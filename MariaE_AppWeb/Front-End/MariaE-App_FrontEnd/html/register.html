@@ -182,13 +182,15 @@
         body: JSON.stringify(formData)
       })
       .then(response => response.json())
-      .then(data => {
-        if(data.success){
-          alert('Registro exitoso');
-        } else {
-          alert('Error en el registro: ' + data.message);
-        }
-      })
+  .then(data => {
+    if(data.success){
+      alert('Registro exitoso');
+      window.location.href = 'sell.html'; // Redirige a la interfaz gráfica de sell.html
+    } else {
+      alert('Error en el registro: ' + data.message);
+    }
+  })
+
       .catch(error => {
         console.error('Error:', error);
       });
