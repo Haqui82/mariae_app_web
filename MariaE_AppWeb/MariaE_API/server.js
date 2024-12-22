@@ -4,8 +4,10 @@ const cors = require('cors'); // Importa el módulo cors para habilitar CORS
 const helmet = require('helmet'); // Importa el módulo helmet para mejorar la seguridad mediante encabezados HTTP
 const app = express(); // Crea una instancia de una aplicación Express
 const port = 10000; // Define el puerto en el cual el servidor escuchará
+const path = require('path');
 
-// Middleware
+// Middleware  
+app.use(express.static(path.join(__dirname, 'Front-End')));// Configura el middleware para servir archivos estáticos desde la carpeta 'Front-End' 
 app.use(cors()); // Habilita CORS para permitir solicitudes entre dominios
 app.use(helmet()); // Usa helmet para establecer varios encabezados de seguridad HTTP
 app.use(bodyParser.urlencoded({ extended: true })); // Configura body-parser para analizar cuerpos de solicitudes URL codificadas
