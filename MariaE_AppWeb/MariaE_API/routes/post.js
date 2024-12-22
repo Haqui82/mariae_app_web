@@ -71,15 +71,7 @@ async function deleteEntryById(table, idColumn, id) {
 }
 
 // Definir los endpoint para las rutas CRUD
-router.post('/create', async (req, res) => {
-  try {
-    const { table, columns, values } = req.body;
-    const result = await createEntry(table, columns, values);
-    res.status(201).json(result);
-  } catch (error) {
-    res.status(500).send('Error al crear la entrada');
-  }
-});
+
 
 router.get('/entries/:table', async (req, res) => {
   try {
@@ -127,3 +119,13 @@ router.delete('/delete/:table/:idColumn/:id', async (req, res) => {
 });
 
 module.exports = router;
+
+/*router.post('/create', async (req, res) => {
+  try {
+    const { table, columns, values } = req.body;
+    const result = await createEntry(table, columns, values);
+    res.status(201).json(result);
+  } catch (error) {
+    res.status(500).send('Error al crear la entrada');
+  }
+});*/
