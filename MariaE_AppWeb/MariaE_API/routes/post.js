@@ -1,14 +1,35 @@
-const sequelize = require('../config/db'); // Importa la conexión desde config/db.js
-
 const express = require('express');
 const router = express.Router();
-
 const mysql = require('mysql2/promise');
+const dotenv = require('dotenv');
+
+// Cargar variables de entorno desde el archivo .env
+dotenv.config();
+
+// Configurar el pool de conexiones utilizando variables de entorno
 const pool = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'mariae_fashiongirls'
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
+});
+
+// Ruta para crear cliente
+router.post('/create', async (req, res) => {
+  const { fullName, doc_type, doc_num, email, phone, address, password, confirmPassword } = req.body; // Extrae datos del cuerpo de la solicitud
+
+  try {
+    const [results] = await pool.query(
+      `INSERT INTO clientes (id_tipo_documento, nombre_cliente, dirección_cliente, celular_cliente, password_cliente, num_doc_cliente, e_mail) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      [doc_type, fullName, address, phone, password, doc_num, email] // Reemplaza los placeholders con los valores reales
+    );
+    res.status(201).json({ success: true, message: 'Registro exitoso' }); // Envía una respuesta de éxito
+  } catch (error) {
+    console.error(error); // Registra cualquier error en la consola
+    if (!res.headersSent) {
+      res.status(500).json({ success: false, message: 'Error en el registro', error: error.message }); // Envía una respuesta de error
+    }
+  }
 });
 
 // Función para crear una entrada en cualquier tabla
@@ -49,6 +70,7 @@ async function deleteEntryById(table, idColumn, id) {
   return result;
 }
 
+// Definir los endpoint para las rutas CRUD
 router.post('/create', async (req, res) => {
   try {
     const { table, columns, values } = req.body;

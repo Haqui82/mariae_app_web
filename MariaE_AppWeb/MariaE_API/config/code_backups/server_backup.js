@@ -2,7 +2,7 @@ const express = require('express'); // Importa el módulo express
 const bodyParser = require('body-parser'); // Importa el módulo body-parser para analizar cuerpos de solicitudes
 const cors = require('cors'); // Importa el módulo cors para habilitar CORS
 const helmet = require('helmet'); // Importa el módulo helmet para mejorar la seguridad mediante encabezados HTTP
-const sequelize = require('./db'); // Importa la configuración de la base de datos desde db.js
+const mysql = require('mysql2/promise'); // Importa el módulo mysql2 para la conexión a la base de datos MariaDB con promesas
 const app = express(); // Crea una instancia de una aplicación Express
 const port = 10000; // Define el puerto en el cual el servidor escuchará
 
@@ -21,27 +21,33 @@ app.use((req, res, next) => {
   next(); // Llama a la siguiente función de middleware en la cadena
 });
 
+// Conexión a la base de datos MariaDB
+const connection = mysql.createPool({
+  host: 'localhost',
+  user: 'root',
+  password: 'haqui',
+  database: 'mariae_fashiongirls'
+});
+
 // Ruta para crear cliente
 app.post('/create', async (req, res) => {
-  const { id_tipo_documento, id_cliente, nombre_cliente, dirección_cliente, celular_cliente, password_cliente } = req.body; // Extrae datos del cuerpo de la solicitud
+  const { fullName, doc_type, doc_num, email, phone, address, password, confirmPassword } = req.body; // Extrae datos del cuerpo de la solicitud
 
   try {
-    // Ejecuta una consulta para insertar un nuevo cliente en la base de datos
-    await sequelize.query(
-      `INSERT INTO clientes (id_tipo_documento, id_cliente, nombre_cliente, dirección_cliente, celular_cliente, password_cliente) VALUES (?, ?, ?, ?, ?, ?)`,
-      {
-        replacements: [id_tipo_documento, id_cliente, nombre_cliente, dirección_cliente, celular_cliente, password_cliente], // Reemplaza los placeholders con los valores reales
-        type: sequelize.QueryTypes.INSERT // Especifica que esta consulta es una inserción
-      }
+    const [results] = await connection.query(
+      `INSERT INTO clientes (id_tipo_documento, nombre_cliente, dirección_cliente, celular_cliente, password_cliente, num_doc_cliente, e_mail) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      [doc_type, fullName, address, phone, password, doc_num, email ] // Reemplaza los placeholders con los valores reales
     );
-    res.status(201).send('Registro exitoso'); // Envía una respuesta de éxito
-  } catch (err) {
-    console.error(err); // Registra cualquier error en la consola
-    res.status(500).send('Error en el registro'); // Envía una respuesta de error
+    res.status(201).json({ success: true, message: 'Registro exitoso' }); // Envía una respuesta de éxito
+  } catch (error) {
+    console.error(error); // Registra cualquier error en la consola
+    if (!res.headersSent) {
+      res.status(500).json({ success: false, message: 'Error en el registro', error: error.message }); // Envía una respuesta de error
+    }
   }
 });
 
 // Iniciar el servidor
 app.listen(port, () => {
   console.log(`Servidor ejecutándose en http://localhost:${port}`); // Mensaje de confirmación al iniciar el servidor
-});  
+});
