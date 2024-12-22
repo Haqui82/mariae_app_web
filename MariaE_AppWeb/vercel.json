@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "MariaE_API/app.js",
+      "src": "MariaE_API/server.js",
       "use": "@vercel/node"
     },
     {
