@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "MariaE_API/app.js",
+      "src": "MariaE_API/server.js",
       "use": "@vercel/node"
     },
     {
@@ -12,7 +12,7 @@
     }
   ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "MariaE_API/app.js" },
+    { "src": "/api/(.*)", "dest": "MariaE_API/server.js" },
     { "src": "/(.*)", "dest": "Front-End/$1" }
   ]
 }

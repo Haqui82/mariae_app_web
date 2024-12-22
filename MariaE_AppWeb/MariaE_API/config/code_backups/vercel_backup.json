@@ -1,0 +1,19 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "MariaE_API/app.js",
+        "use": "@vercel/node"
+      },
+      {
+        "src": "Front-End/**/*",
+        "use": "@vercel/static-build",
+        "config": { "distDir": "Front-End" }
+      }
+    ],
+    "routes": [
+      { "src": "/api/(.*)", "dest": "MariaE_API/app.js" },
+      { "src": "/(.*)", "dest": "Front-End/$1" }
+    ]
+  }
+  
