@@ -22,15 +22,15 @@ app.use((req, res, next) => {
 });
 
 // Sirve archivos estáticos desde el directorio 'Front-End'
-app.use(express.static(path.join(__dirname, 'Front-End', 'MariaE-App_FrontEnd', 'html')));
+app.use(express.static(path.join(__dirname, 'Front-End')));
 
 // Ruta para servir el archivo index.html
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'Front-End', 'MariaE-App_FrontEnd', 'html', 'index.html'));
+  res.sendFile(path.join(__dirname, 'Front-End', 'html', 'index.html'));
 });
 
 // Importar y usar las rutas de post.js con el prefijo /api
-const postRoutes = require('./post');
+const postRoutes = require('./routes/post');
 app.use('/api', postRoutes);
 
 // Iniciar el servidor
