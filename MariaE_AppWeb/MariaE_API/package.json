@@ -1,11 +1,10 @@
 {
-  "name": "mariae_appweb",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js",
-    "test": "nodemon app.js"
+  "name": "mariae_appweb", 
+  "version": "1.0.0", 
+  "main": "MariaE_API/server.js", 
+  "scripts": { 
+  "start": "node MariaE_API/server.js",
+  "test": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
