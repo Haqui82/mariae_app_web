@@ -1,6 +1,0 @@
-{
-    "scripts": {
-      "start": "node MariaE_API/routes/server.js"
-    }
-  }
-  

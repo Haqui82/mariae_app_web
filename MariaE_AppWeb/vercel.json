@@ -6,14 +6,14 @@
       "use": "@vercel/node"
     },
     {
-      "src": "Front-End/MariaE-App_FrontEnd/html/**/*",
+      "src": "index.html",
       "use": "@vercel/static-build",
-      "config": { "distDir": "Front-End/MariaE-App_FrontEnd/html" }
+      "config": { "distDir": "" }
     }
   ],
   "routes": [
     { "src": "/api/(.*)", "dest": "MariaE_API/routes/server.js" },
-    { "src": "/", "dest": "Front-End/MariaE-App_FrontEnd/html/index.html"},
-    { "src": "/(.*)", "dest": "Front-End/MariaE-App_FrontEnd/html/$1" }
+    { "src": "/", "dest": "index.html" },
+    { "src": "/(.*)", "dest": "index.html" }
   ]
 }
