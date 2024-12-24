@@ -13,7 +13,7 @@
   ],
   "routes": [
     { "src": "/api/(.*)", "dest": "MariaE_API/routes/server.js" },
-    { "src": "/", "dest": "Front-End/MariaE-App_FrontEnd/html/index.html" },
+    { "src": "/", "dest": "Front-End/MariaE-App_FrontEnd/html/index.html"},
     { "src": "/(.*)", "dest": "Front-End/MariaE-App_FrontEnd/html/$1" }
   ]
 }
