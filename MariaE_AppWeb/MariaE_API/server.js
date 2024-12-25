@@ -25,16 +25,14 @@ app.use((req, res, next) => {
 // Servir archivos estáticos desde el directorio 'Front-End'
 app.use(express.static(path.join(__dirname, 'Front-End')));
 
+// Importar y usar las rutas de post.js con el prefijo /api
+const postRoutes = require('./routes/post');
+app.use('/api', postRoutes);
 
 // Ruta para servir "index.html" para todas las demás solicitudes
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, '..', 'Front-End', 'html', 'index.html'));
 });
-
-
-// Importar y usar las rutas de post.js con el prefijo /api
-const postRoutes = require('./MariaE_API/routes/post');
-app.use('/api', postRoutes);
 
 // Conectar a la base de datos usando Sequelize
 const sequelize = config.db;

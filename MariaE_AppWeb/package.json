@@ -1,14 +1,17 @@
 {
   "name": "mariae_appweb", 
   "version": "1.0.0", 
-  "main": "MariaE_API/routes/server.js", 
+  "main": "MariaE_API/routes/server.js",
+  "author": "haqui82",
+  "license": "ISC", 
   "scripts": { 
   "start": "node MariaE_API/routes/server.js",
   "test": "nodemon app.js",
   "build": "echo 'No build step required'"
   },
-  "author": "haqui82",
-  "license": "ISC",
+  "static": { "public": "Front-End/html"
+  },
+  
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
