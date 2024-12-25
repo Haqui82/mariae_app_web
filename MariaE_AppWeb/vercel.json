@@ -2,18 +2,18 @@
   "version": 2,
   "builds": [
     {
-      "src": "MariaE_API/server.js",
+      "src": "MariaE_API/routes/server.js",
       "use": "@vercel/node"
     },
     {
-      "src": "Front-End/**/*",
+      "src": "Front-End/MariaE-App_FrontEnd/html/**/*",
       "use": "@vercel/static-build",
-      "config": { "distDir": "Front-End" }
+      "config": { "distDir": "Front-End/MariaE-App_FrontEnd/html" }
     }
   ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "MariaE_API/server.js" },
-    { "src": "/", "dest": "/Front-End/index.html" },
-    { "src": "/(.*)", "dest": "/Front-End/$1" }
+    { "src": "/api/(.*)", "dest": "MariaE_API/routes/server.js" },
+    { "src": "/", "dest": "Front-End/MariaE-App_FrontEnd/html/index.html" },
+    { "src": "/(.*)", "dest": "Front-End/MariaE-App_FrontEnd/html/$1" }
   ]
 }
