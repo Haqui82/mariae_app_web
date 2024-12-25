@@ -3,9 +3,11 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const helmet = require('helmet');
 const path = require('path');
+require('dotenv').config(); // Cargar variables de entorno desde .env
 const config = require('./config/config'); // Importa la configuración centralizada
+
 const app = express();
-const port = process.env.PORT || config.server.port;
+const port = config.server_port || 10000; // Usar SERVER_PORT o 10000 por defecto
 
 // Middleware
 app.use(cors());
@@ -23,13 +25,13 @@ app.use((req, res, next) => {
 });
 
 // Servir archivos estáticos desde el directorio 'Front-End'
-app.use(express.static(path.join(__dirname, 'Front-End')));
+app.use(express.static(path.join(__dirname, '..', 'Front-End')));
 
 // Importar y usar las rutas de post.js con el prefijo /api
 const postRoutes = require('./routes/post');
 app.use('/api', postRoutes);
 
-// Ruta para servir "index.html" para todas las demás solicitudes
+// Ruta para servir el archivo index.html desde su nueva ubicación
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'Front-End', 'html', 'index.html'));
 });

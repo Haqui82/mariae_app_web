@@ -1,12 +1,10 @@
-const db = require('./db');
 require('dotenv').config(); // Cargar variables de entorno desde .env
-const configJson = require('./config.json');
+const db = require('./db');
 
 const config = {
-  server: {
-    port: process.env.SERVER_PORT || configJson.server.port // Asegurando que SERVER_PORT se utiliza
-  },
-  db
+  server_port: process.env.SERVER_PORT,
+  db,
+  db_port: process.env.DB_PORT
 };
 
 module.exports = config;
