@@ -3,8 +3,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const helmet = require('helmet');
 const path = require('path');
+const config = require('./config/config'); // Importa la configuración centralizada
 const app = express();
-const port = process.env.PORT || 10000;
+const port = process.env.PORT || config.server.port;
 
 // Middleware
 app.use(cors());
@@ -21,7 +22,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Sirve archivos estáticos desde el directorio 'Front-End'
+// Servir archivos estáticos desde el directorio 'Front-End'
 app.use(express.static(path.join(__dirname, 'Front-End')));
 
 // Ruta para servir el archivo index.html
@@ -33,7 +34,34 @@ app.get('/', (req, res) => {
 const postRoutes = require('./routes/post');
 app.use('/api', postRoutes);
 
+// Conectar a la base de datos usando Sequelize
+const sequelize = config.db;
+
+sequelize.authenticate()
+  .then(() => {
+    console.log('Conectado a MariaDB usando Sequelize');
+  })
+  .catch(err => {
+    console.error('No se pudo conectar a la base de datos:', err);
+  });
+
 // Iniciar el servidor
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Servidor ejecutándose en http://localhost:${port}`);
 });
+
+// Manejo de eventos de cierre para liberar el puerto
+function handleShutdown() {
+  console.log('Cerrando servidor...');
+  server.close(() => {
+    console.log('Servidor cerrado.');
+    process.exit(0);
+  });
+}
+
+// Para manejar Ctrl+C
+process.on('SIGINT', handleShutdown);
+// Para manejar otras señales de terminación
+process.on('SIGTERM', handleShutdown);
+
+module.exports = app;
