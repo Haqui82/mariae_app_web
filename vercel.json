@@ -9,6 +9,10 @@
       "src": "Front-End/html/index.html",
       "use": "@vercel/static-build",
       "config": { "distDir": "Front-End/html" }
+    },
+    {
+      "src": "package.json",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
