@@ -6,7 +6,8 @@
   "license": "ISC",
   "scripts": {
     "start": "node MariaE_API/server.js",
-    "test": "nodemon MariaE_API/server.js"    
+    "test": "nodemon MariaE_API/server.js",
+    "build": "echo 'Building the app...'"    
   },
   "static": {
     "public": "Front-End/html"
