@@ -10,7 +10,7 @@
     "build": "echo 'Building the app...'"    
   },
   "static": {
-    "public": "Front-End/html"
+    "public": "Front-End"
   },
   "src": "./package.json",  
   "dependencies": {
