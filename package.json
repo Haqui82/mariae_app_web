@@ -11,7 +11,7 @@
   "static": {
     "public": "Front-End/html"
   },
-  "src": "Front-End/html/index.html",  
+  "src": "package.json",  
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
