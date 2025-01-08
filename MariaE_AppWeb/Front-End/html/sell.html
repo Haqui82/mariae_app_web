@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Basic -->
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
+
+  <title>
+    Maria E. girls Fashion Confecciones.
+  </title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <!-- Custom styles for this template -->
+  <link href="../css/style.css" rel="stylesheet"/>
+  <!-- responsive style -->
+  <link href="../css/responsive.css" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- header section starts -->
+  <header class="header_section">
+    <nav class="navbar navbar-expand-lg custom_nav-container ">
+      <a class="navbar-brand" href="index.html">
+        <span>
+          Maria E. girls Fashion Confecciones.<br>
+          <h6>🌟 ¡Donde el estilo conoce la comodidad! 🌟</h6>
+        </span>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class=""></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Inicio <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="shop.html">Tienda</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="why.html">Nosotros</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="testimonial.html">Testimonios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contáctenos</a>
+          </li>
+        </ul>
+        <div class="user_option">
+          <a href="">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <span>Ingresar</span>
+          </a>
+          <a href="">
+            <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+          </a>
+          <form class="form-inline">
+            <button class="btn nav_search-btn" type="submit">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- end header section -->
+
+  <!-- Contenido de la página -->
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">A Un Clic De Ser Tuyo...</h1>
+    <div class="row">
+      <!-- Producto 1 -->
+      <div class="col-sm-6 col-md-4 col-lg-3 product-box">
+        <div class="box">
+          <a href="#">
+            <div class="img-box">
+              <img src="../images/product1.jpg" alt="Producto 1">
+            </div>
+            <div class="detail-box">
+              <h6>Producto 1</h6>
+              <h6>Precio <span>$50.000 COP</span></h6>
+            </div>
+            <div class="new">
+              <span>Nuevo</span>
+            </div>
+          </a>
+          <button class="btn btn-primary mt-2 add-to-cart" data-id="1">Agregar al Carrito</button>
+        </div>
+      </div>
+      <!-- Añadir más productos aquí -->
+    </div>
+  </div>
+
+  <!-- Carrito de Compras -->
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Carrito de Compras</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>Total</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="cart-items">
+        <!-- Los elementos del carrito se agregarán aquí dinámicamente -->
+      </tbody>
+    </table>
+    <div class="text-right">
+      <h4>Total: $<span id="cart-total">0</span> COP</h4>
+      <button class="btn btn-success" id="checkout-btn">Proceder al Pago</button>
+    </div>
+  </div>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  
+  <!-- Popper.js (necesario para Bootstrap) -->
+  <script src="https://cdn.jsdelivr.net
