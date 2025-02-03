@@ -4,11 +4,11 @@ const sequelize = require('../config/db'); // Ajusta la ruta según la ubicació
 
 // Ruta para crear cliente
 router.post('/create', async (req, res) => {
-  const { fullName, doc_type, doc_num, email, phone, address, password, confirmPassword } = req.body; // Extrae datos del cuerpo de la solicitud
+  const { fullName, doc_type, doc_num, email, phone, address, password } = req.body; // Extrae datos del cuerpo de la solicitud
 
   try {
     await sequelize.query(
-      `INSERT INTO clientes (id_tipo_documento, nombre_cliente, dirección_cliente, celular_cliente, password_cliente, num_doc_cliente, e_mail) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO clientes (id_tipo_documento, nombre_cliente, dirección_cliente, celular_cliente, password_cliente, num_doc_cliente, email_cliente) VALUES (?, ?, ?, ?, ?, ?, ?)`,
       {
         replacements: [doc_type, fullName, address, phone, password, doc_num, email]
       }
@@ -19,6 +19,7 @@ router.post('/create', async (req, res) => {
     res.status(500).json({ success: false, message: 'Error en el registro', error: error.message }); // Envía una respuesta de error
   }
 });
+
 
 // Función para crear una entrada en cualquier tabla
 async function createEntry(table, columns, values) {
