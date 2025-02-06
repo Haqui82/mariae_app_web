@@ -82,7 +82,7 @@
             </li>
           </ul>
           <div class="user_option">
-            <a href="">
+            <a href="admin.html">
               <i class="fa fa-user" aria-hidden="true"></i>
               <span>
                 Ingresar
@@ -123,16 +123,22 @@
         <label for="password">Contraseña</label>
         <input type="password" class="form-control" id="password" name="password" placeholder="Ingresa tu contraseña">
       </div>      
-      <button type="submit" class="btn btn-primary btn-block" id="ingresarButton">Ingresar</button>
+      <button type="button" class="btn btn-primary btn-block" id="ingresarButton">Ingresar</button>
       <button type="button" class="btn btn-primary btn-block" id="registerButton" onclick="window.location.href='register.html';">Registrarse</button>
 
     </form>
   </div>
 
   <footer>
-    <span>&copy; <span id="displayYear"></span></span>
+    <span>&copy; <span id="displayYear"></span> Derechos Reservados mr.haqui82@gmail.com</span>
 </footer>  
   
+<script>
+  document.getElementById("ingresarButton").onclick = function () {
+    window.location.href = "user.html";
+  };
+</script>
+
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
